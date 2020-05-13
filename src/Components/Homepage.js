@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Layout from "./Layout";
 import axios from "axios";
 const JokesFetched = () => {
   const [data, setData] = useState([]);
@@ -12,6 +12,7 @@ const JokesFetched = () => {
     const result = await axios(
       "https://official-joke-api.appspot.com/jokes/programming/random"
     );
+
     setData(result.data[0]);
     setSetup(result.data[0].setup);
     setTimeout(() => {
@@ -37,14 +38,13 @@ const JokesFetched = () => {
     fetchData();
     console.log("data", data);
   };
-
+  const newData = { setup, punch };
   if (loading) {
     return <h1>Loading....</h1>;
   } else {
     return (
       <div>
-        <p>{setup}</p>
-        <p>{punch}</p>
+        <Layout {...newData} />
         <button onClick={reFetch}>click</button>
       </div>
     );
