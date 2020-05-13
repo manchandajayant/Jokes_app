@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import axios from "axios";
+import Grid from "@material-ui/core/Grid";
+import { Button } from "@material-ui/core";
+import "../App.css";
 const JokesFetched = () => {
   const [data, setData] = useState([]);
   const [punch, setPunch] = useState("");
@@ -38,14 +41,32 @@ const JokesFetched = () => {
     fetchData();
     console.log("data", data);
   };
+
   const newData = { setup, punch };
   if (loading) {
-    return <h1>Loading....</h1>;
+    return (
+      <div style={{ marginBottom: "100%", textAlign: "center" }}>
+        <h1 style={{ fontSize: "50px" }}>Loading....</h1>
+      </div>
+    );
   } else {
     return (
       <div>
-        <Layout {...newData} />
-        <button onClick={reFetch}>click</button>
+        <Grid
+          container
+          spacing={4}
+          style={{
+            marginLeft: "7%",
+            marginTop: "10%",
+            textAlign: "center",
+          }}
+        >
+          <Grid item xs={12} sm={12} md={10}>
+            <Layout {...newData} />
+            {punch ? <p class="fnt">Like it?</p> : <p></p>}
+            <Button onClick={reFetch}>click here to get more</Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }
