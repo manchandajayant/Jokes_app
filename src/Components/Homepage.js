@@ -5,7 +5,8 @@ import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import { Button, Typography } from "@material-ui/core";
 import "../App.css";
-import showAllJokes from "../Actions/jokeActions";
+import { showAlljokes } from "../Actions/jokeActions";
+
 const JokesFetched = () => {
   const [data, setData] = useState([]);
   const [punch, setPunch] = useState("");
@@ -27,7 +28,7 @@ const JokesFetched = () => {
 
   useEffect(() => {
     fetchData();
-    dispatch(showAllJokes());
+    dispatch(showAlljokes());
   }, [dispatch]);
 
   useEffect(() => {

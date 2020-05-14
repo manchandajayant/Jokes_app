@@ -10,7 +10,7 @@ const alljokesFetched = (jokes) => ({
   payload: jokes,
 });
 
-const showAlljokes = () => (dispatch, getState) => {
+export const showAlljokes = () => (dispatch, getState) => {
   const state = getState();
   const { jokes } = state;
 
@@ -24,7 +24,6 @@ const showAlljokes = () => (dispatch, getState) => {
       .catch(console.error);
   }
 };
-
 const newJokeCreated = (jokes) => ({
   type: NEW_JOKE,
   payload: jokes,
@@ -40,5 +39,3 @@ export const newJoke = (data) => (dispatch, getState) => {
     })
     .catch(console.error);
 };
-
-export default showAlljokes;
