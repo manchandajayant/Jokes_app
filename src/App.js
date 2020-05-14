@@ -8,7 +8,7 @@ function App() {
     <Grid
       container
       direction="column"
-      style={{ backgroundColor: "rgba(150,250,250,0.9)", marginBottom: "10%" }}
+      style={{ backgroundColor: "rgba(150,250,250,0.9)", marginBottom: "0%" }}
     >
       <Grid item container style={{ marginTop: "5%", marginBottom: "20%" }}>
         <Grid item xs={false} sm={2} />

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Layout from "./Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import "../App.css";
+import showAllJokes from "../Actions/jokeActions";
 const JokesFetched = () => {
   const [data, setData] = useState([]);
   const [punch, setPunch] = useState("");
   const [setup, setSetup] = useState("");
   const [ready, setReady] = useState(false);
-  const [loading, setLoading] = useState(true);
-
+  const jokes = useSelector((state) => state.jokes);
+  const dispatch = useDispatch();
   const fetchData = async () => {
     const result = await axios(
       "https://official-joke-api.appspot.com/jokes/programming/random"
@@ -21,12 +23,12 @@ const JokesFetched = () => {
     setTimeout(() => {
       setReady(true);
     }, 3000);
-    setLoading(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+    dispatch(showAllJokes());
+  }, [dispatch]);
 
   useEffect(() => {
     setPunch(data.punchline);
@@ -37,13 +39,14 @@ const JokesFetched = () => {
     setSetup("");
     setPunch("");
     setReady(false);
-    setLoading(true);
     fetchData();
-    console.log("data", data);
   };
+  const myArray = ["Like it?", "How about this one?", "ha ha ha ha", "lol"];
+
+  const randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
   const newData = { setup, punch };
-  if (loading) {
+  if (!data) {
     return (
       <div style={{ marginBottom: "100%", textAlign: "center" }}>
         <h1 style={{ fontSize: "50px" }}>Loading....</h1>
@@ -52,6 +55,9 @@ const JokesFetched = () => {
   } else {
     return (
       <div>
+        <Typography variant="h4" style={{ justifyContent: "center" }}>
+          Joke generator
+        </Typography>
         <Grid
           container
           spacing={4}
@@ -63,7 +69,13 @@ const JokesFetched = () => {
         >
           <Grid item xs={12} sm={12} md={10}>
             <Layout {...newData} />
-            {punch ? <p class="fnt">Like it?</p> : <p></p>}
+            {punch ? (
+              <Typography variant="h5" className="fnt">
+                {randomItem}
+              </Typography>
+            ) : (
+              <p></p>
+            )}
             <Button onClick={reFetch}>click here to get more</Button>
           </Grid>
         </Grid>

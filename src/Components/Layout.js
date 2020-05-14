@@ -6,7 +6,7 @@ import "../App.css";
 const useStyles = makeStyles({
   root: {
     Width: 575,
-    height: 400,
+    height: 350,
     backgroundColor: "#8FEFAD",
     border: "solid black 0.2px",
     boxShadow: "1px 1px rgba(150,250,25,0.)",
@@ -27,19 +27,19 @@ function Layout(newData) {
   return (
     <Card className={classes.root}>
       <Typography
-        variant="h5"
+        variant="h4"
         component="h2"
-        style={{ marginTop: "17%" }}
-        class="fnt"
+        style={{ marginTop: "6%" }}
+        className="fnt"
       >
         {setup}
       </Typography>
 
       <Typography
-        variant="h3"
+        variant="h4"
         component="h2"
-        style={{ marginTop: "7%" }}
-        class="fnt"
+        style={{ marginTop: "9%" }}
+        className="fnt"
       >
         {punch}
       </Typography>
