@@ -15,21 +15,21 @@ const NewJokContainer = () => {
   console.log(newJoke());
   return (
     <div>
-      PRICE:
+      Setup
       <input
         type="text"
-        name="price"
-        placeholder="price"
-        // onChange={(e) => setPrice(e.target.value)}
-        // value={price}
+        name="setup"
+        placeholder="setup"
+        onChange={(e) => setSetup(e.target.value)}
+        value={setup}
       />
-      DESCRIPTION
+      Punchline
       <input
         type="text"
-        name="description"
-        placeholder="Description"
-        // onChange={(e) => setDescription(e.target.value)}
-        // value={description}
+        name="punchline"
+        placeholder="punchline"
+        onChange={(e) => setPunchline(e.target.value)}
+        value={punchline}
       />
       <button onClick={onSubmit}>CREATE</button>
     </div>

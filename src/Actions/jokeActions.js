@@ -31,7 +31,7 @@ const newJokeCreated = (jokes) => ({
 
 export const newJoke = (data) => (dispatch, getState) => {
   request
-    .post(`${baseUrl}/event`)
+    .post(`${baseUrl}/joke`)
     .send(data)
     .then((res) => {
       const action = newJokeCreated(res.body);

@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Layout from "./Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import { Button, Typography } from "@material-ui/core";
 import "../App.css";
-import { showAlljokes } from "../Actions/jokeActions";
-
+import { FacebookShareButton } from "react-share";
 const JokesFetched = () => {
   const [data, setData] = useState([]);
   const [punch, setPunch] = useState("");
   const [setup, setSetup] = useState("");
   const [ready, setReady] = useState(false);
-  const jokes = useSelector((state) => state.jokes);
-  const dispatch = useDispatch();
+
   const fetchData = async () => {
     const result = await axios(
       "https://official-joke-api.appspot.com/jokes/programming/random"
@@ -28,8 +25,7 @@ const JokesFetched = () => {
 
   useEffect(() => {
     fetchData();
-    dispatch(showAlljokes());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setPunch(data.punchline);
